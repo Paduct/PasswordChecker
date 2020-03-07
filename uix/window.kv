@@ -1,0 +1,246 @@
+<NImage@Image>:
+    source: app.NEGATIVE_ICON
+
+
+<PImage@Image>:
+    source: app.POSITIVE_ICON
+
+
+<DLabel@Label>:
+    text_size: (self.width - 50, None)
+
+
+<ALabel@Label>:
+    text: '0'
+
+
+<VBoxLayout@BoxLayout>:
+    orientation: 'vertical'
+
+
+<MenuBar@ActionGroup>
+    ActionButton:
+        text: 'ASCII85'
+        on_press: app.checker.encode_ascii85()
+        on_release: app.root.ids.entry_field.text = app.checker.password
+
+
+<RootWindow@VBoxLayout>:
+    spacing: 10
+    padding: 10
+
+    PanelBar
+
+    Label:
+        size_hint_y: None
+        height: 30
+        bold: True
+        text: app.checker.LABEL_TEXT
+
+    BoxLayout:
+        size_hint_y: None
+        height: 40
+        spacing: 10
+        padding: 5
+
+        Switch:
+            on_active: app.visibility_password()
+            id: visibility_switch
+            size_hint_x: None
+
+        TextInput:
+            id: entry_field
+            focus: True
+            unfocus_on_touch: False
+            password: True
+            multiline: False
+            write_tab: True
+            hint_text: app.checker.HINT_TEXT
+            on_text: app.check_password()
+
+        ToggleButton:
+            size_hint_x: None
+            id: keyboard_button
+            on_press: app.show_keyboard()
+            text: 'Keyboard'
+
+    HSeparatorLine
+
+    BoxLayout:
+        size_hint_y: None
+        height: 20
+
+        Label:
+            size_hint_x: None
+            text: app.checker.STATUS_STR
+
+        VSeparatorLine
+
+        Label:
+            text: app.checker.DESCRIPTION_STR
+
+        VSeparatorLine
+
+        Label:
+            size_hint_x: None
+            text: app.checker.AMOUNT_STR
+
+    HSeparatorLine
+
+    BoxLayout:
+        size_hint: (1, 0.75)
+
+        VBoxLayout:
+            size_hint_x: None
+
+            NImage:
+                id: uppercase_ascii_status
+
+            NImage:
+                id: lowercase_ascii_status
+
+            NImage:
+                id: digit_ascii_status
+
+            NImage:
+                id: character_ascii_status
+
+            NImage:
+                id: uppercase_not_ascii_status
+
+            NImage:
+                id: lowercase_not_ascii_status
+
+            NImage:
+                id: space_status
+
+            NImage:
+                id: unicode_status
+
+            NImage:
+                id: length_status
+
+        VSeparatorLine
+
+        VBoxLayout:
+            DLabel:
+                text: app.checker.ASCII_UPPERCASE_LETTER_STR
+
+            DLabel:
+                text: app.checker.ASCII_LOWERCASE_LETTER_STR
+
+            DLabel:
+                text: app.checker.ASCII_NUMERAL_STR
+
+            DLabel:
+                text: app.checker.ASCII_SPECIAL_CHARACTER_STR
+
+            DLabel:
+                text: app.checker.NON_ASCII_UPPERCASE_LETTER_STR
+
+            DLabel:
+                text: app.checker.NON_ASCII_LOWERCASE_LETTER_STR
+
+            DLabel:
+                text: app.checker.FREE_SPACE_STR
+
+            DLabel:
+                text: app.checker.UNICODE_CHARACTER_STR
+
+            DLabel:
+                text: app.checker.NORMAL_LENGTH_STR
+
+        VSeparatorLine
+
+        VBoxLayout:
+            size_hint_x: None
+
+            ALabel:
+                id: uppercase_ascii_amount
+
+            ALabel:
+                id: lowercase_ascii_amount
+
+            ALabel:
+                id: digit_ascii_amount
+
+            ALabel:
+                id: character_ascii_amount
+
+            ALabel:
+                id: uppercase_not_ascii_amount
+
+            ALabel:
+                id: lowercase_not_ascii_amount
+
+            ALabel:
+                id: space_amount
+
+            ALabel:
+                id: unicode_amount
+
+            ALabel:
+                id: length_amount
+
+    HSeparatorLine
+
+    BoxLayout:
+        size_hint: (1, 0.25)
+
+        VBoxLayout:
+            size_hint_x: None
+
+            PImage:
+                id: sequential_repetition_status
+
+            PImage:
+                id: substantial_dominance_status
+
+            PImage:
+                id: symbol_set_status
+
+        VSeparatorLine
+
+        VBoxLayout:
+            DLabel:
+                text: app.checker.NO_CONSECUTIVE_REPETITION_SYMBOLS_STR
+
+            DLabel:
+                text: app.checker.NO_SUBSTANTIALLY_DOMINANT_SYMBOLS_STR
+
+            DLabel:
+                text: app.checker.NO_MATCHING_SYMBOL_SETS_STR
+
+        VSeparatorLine
+
+        VBoxLayout:
+            size_hint_x: None
+
+            ALabel:
+                id: sequential_repetition_amount
+
+            ALabel:
+                id: substantial_dominance_amount
+
+            ALabel:
+                id: symbol_set_amount
+
+    HSeparatorLine
+
+    BoxLayout:
+        size_hint_y: None
+        height: 40
+
+        Label:
+            size_hint_x: None
+            bold: True
+            text: app.checker.BIT_STR
+
+        ProgressBar:
+            id: bit_entropy_status
+            max: app.checker.MAXIMUM_COMPLEXITY_BIT
+
+        ALabel:
+            size_hint_x: None
+            id: bit_entropy_amount
+            bold: True
